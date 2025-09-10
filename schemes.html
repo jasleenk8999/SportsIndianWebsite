@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Sports Schemes - Ministry of Youth Affairs and Sports</title>
+   <link rel="stylesheet" href="styles.css">
+   <style>
+       /* Additional styling for collapsible sections */
+       .scheme {
+           margin-bottom: 1rem;
+           border: 1px solid #ccc;
+           border-radius: 8px;
+           overflow: hidden;
+       }
+
+
+       .scheme-header {
+           background-color: #003366;
+           color: white;
+           padding: 0.75rem 1rem;
+           cursor: pointer;
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+       }
+
+
+       .scheme-header:hover {
+           background-color: #00509E;
+       }
+
+
+       .scheme-content {
+           display: none;
+           padding: 1rem;
+           background-color: #fff;
+           border-top: 1px solid #ccc;
+       }
+
+
+       .search-bar {
+           text-align: center;
+           margin: 1rem 0;
+       }
+
+
+       .search-bar input {
+           width: 50%;
+           padding: 0.5rem;
+           border: 1px solid #ccc;
+           border-radius: 4px;
+       }
+
+
+       .search-bar button {
+           padding: 0.5rem 1rem;
+           background-color: #003366;
+           color: white;
+           border: none;
+           border-radius: 4px;
+           cursor: pointer;
+       }
+
+
+       .search-bar button:hover {
+           background-color: #00509E;
+       }
+   </style>
+</head>
+<body>
+   <header>
+       <div class="navbar">
+           <div class="logo">
+               <h1>Sports Ministry</h1>
+           </div>
+           <nav>
+               <ul>
+                   <li><a href="index.html">Home</a></li>
+                   <li><a href="about.html">About Us</a></li>
+                   <li><a href="contact.html">Contact Us</a></li>
+                   <li><a href="indian-sports.html">Indian Sports</a></li>
+                   <li><a href="SportsRelatedMovies.html">Sports Related Movies</a></li>
+               </ul>
+           </nav>
+       </div>
+   </header>
+   <section id="schemes">
+       <div class="container">
+           <h2>Our Schemes</h2>
+           <div class="search-bar">
+               <input type="text" id="searchInput" placeholder="Search for schemes..." />
+               <button onclick="filterSchemes()">Search</button>
+           </div>
+           <div id="schemeList">
+               <!-- Schemes will be dynamically populated here -->
+           </div>
+       </div>
+   </section>
+   <footer>
+       <p>&copy; 2025 Ministry of Youth Affairs and Sports, Government of India</p>
+   </footer>
+   <button id="scroll-to-top" onclick="scrollToTop()" title="Back to top">↑</button>
+   <script>
+       const schemes = [
+           { title: 'Khelo India Scheme', description: 'The Khelo India Scheme is a national initiative launched to identify and nurture young sporting talent from grassroots level to international competition. This scheme focuses on providing financial support, infrastructure, and coaching to athletes at the school, college, and university levels. It aims to make sports a part of the curriculum in educational institutions, ensuring that every child has access to physical activity and sports. The Khelo India Games, a part of this initiative, is an annual event that showcases the best young talent in India across multiple sports disciplines.' },
+           { title: 'Fit India Movement', description: 'Launched by the Government of India in 2019, the Fit India Movement encourages citizens to prioritize their health and fitness. The campaign aims to inspire individuals to adopt a more active lifestyle through physical activities like exercise, yoga, and sports. It seeks to promote physical fitness not just among athletes but across all age groups, thereby contributing to the overall health of the nation.' },
+           { title: 'Target Olympic Podium Scheme (TOPS)', description: 'The Target Olympic Podium Scheme is designed to provide financial and logistical support to India’s top athletes, especially those who are training for the Olympics. The scheme offers targeted interventions, including funding for specialized training, equipment, and international exposure, with the aim of ensuring that athletes are well-prepared to compete at the highest levels of international sports. It is a comprehensive plan to support athletes across various Olympic disciplines to achieve podium finishes at the Olympic Games' },
+           { title: 'National Sports Development Fund (NSDF)', description: 'The National Sports Development Fund was established to encourage the development of sports in India. It provides financial assistance to athletes, coaches, and sports organizations, particularly in areas such as infrastructure development, talent identification, and sports research. This fund supports athletes who need financial backing for training and competition expenses, particularly for those competing in international tournaments.' },
+           { title: 'Sports Authority of India (SAI) Schemes', description: 'SAI, an autonomous body under the Ministry, implements several schemes that aim to improve the infrastructure, training, and performance of Indian athletes. SAI runs various training programs, national camps, and residential facilities for athletes, helping them access world-class training and coaching in their respective sports disciplines.' },
+           { title: 'National Sports Talent Search Scheme (NSTSS)', description: 'The National Sports Talent Search Scheme is designed to identify talented athletes from rural and remote areas of India and provide them with the necessary training and resources. Through this scheme, young athletes are selected and enrolled in specialized sports schools and training camps. The aim is to ensure that athletes from every corner of the country get equal opportunities to pursue sports and reach their full potential.' },
+           { title: 'Pandit Deendayal Upadhyay National Welfare Fund for Sportsmen', description: ' This scheme provides financial assistance to athletes who are facing financial difficulties and require support for their training and rehabilitation. It also provides compensation to athletes who suffer from career-ending injuries. The fund ensures that athletes have the resources they need to recover and continue competing in sports.' },
+           { title: 'Rashtriya Khel Protsahan Puruskar', description: ' This prestigious award is given annually by the Government of India to organizations, coaches, and individuals who have made significant contributions to the development of sports in the country. The award recognizes the efforts of those who have excelled in promoting sports at the grassroots level and contributed to the success of athletes on the national and international stage.' },
+           { title: 'State-Level Sports Schemes', description: 'In addition to national schemes, many state governments in India have introduced their own sports development programs. These include initiatives like sports scholarship programs, financial assistance for athletes, and infrastructure development projects aimed at improving sports facilities and promoting talent in specific regions. These state-level schemes complement national initiatives and contribute to the overall growth of sports in India.' },
+           { title: 'Sports Infrastructure Scheme', description: ' The Sports Infrastructure Scheme aims to develop and upgrade sports facilities and infrastructure in various parts of India. This includes the construction of new sports stadiums, training centers, and the upgrading of existing facilities. The scheme also provides support to state governments and local authorities for the creation of sports infrastructure that meets international standards.' },
+           { title: 'Promotion of Rural Sports', description: ' This initiative seeks to encourage the participation of rural youth in sports activities. It provides funding and resources for grassroots-level events and competitions in rural areas. The aim is to bring sports to underserved communities, fostering talent in rural India and providing opportunities for athletes from these areas to showcase their skills at higher levels of competition.' },
+
+
+       ];
+
+
+       const schemeList = document.getElementById('schemeList');
+
+
+       // Populate schemes dynamically
+       function populateSchemes() {
+           schemeList.innerHTML = '';
+           schemes.forEach((scheme, index) => {
+               const schemeItem = document.createElement('div');
+               schemeItem.classList.add('scheme');
+               schemeItem.innerHTML = `
+                   <div class="scheme-header" onclick="toggleContent(${index})">
+                       <span>${scheme.title}</span>
+                       <span>+</span>
+                   </div>
+                   <div class="scheme-content">${scheme.description}</div>
+               `;
+               schemeList.appendChild(schemeItem);
+           });
+       }
+
+
+       // Toggle scheme content visibility
+       function toggleContent(index) {
+           const content = document.querySelectorAll('.scheme-content')[index];
+           const header = document.querySelectorAll('.scheme-header')[index];
+           content.style.display = content.style.display === 'block' ? 'none' : 'block';
+           header.querySelector('span:last-child').textContent = content.style.display === 'block' ? '-' : '+';
+       }
+
+
+       // Filter schemes based on search input
+       function filterSchemes() {
+           const searchValue = document.getElementById('searchInput').value.toLowerCase();
+           const filteredSchemes = schemes.filter(scheme => scheme.title.toLowerCase().includes(searchValue));
+           schemeList.innerHTML = '';
+           if (filteredSchemes.length) {
+               filteredSchemes.forEach((scheme, index) => {
+                   const schemeItem = document.createElement('div');
+                   schemeItem.classList.add('scheme');
+                   schemeItem.innerHTML = `
+                       <div class="scheme-header" onclick="toggleContent(${index})">
+                           <span>${scheme.title}</span>
+                           <span>+</span>
+                       </div>
+                       <div class="scheme-content">${scheme.description}</div>
+                   `;
+                   schemeList.appendChild(schemeItem);
+               });
+           } else {
+               schemeList.innerHTML = '<p>No schemes found.</p>';
+           }
+       }
+
+
+       // Scroll to top functionality
+       function scrollToTop() {
+           window.scrollTo({ top: 0, behavior: 'smooth' });
+       }
+
+
+       populateSchemes();
+   </script>
+</body>
+</html>
+
+
+
+
+

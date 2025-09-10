@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>About Us - Sports Ministry of India</title>
+   <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+   <header>
+       <div class="navbar">
+           <div class="logo">
+               <h1>Sports Ministry</h1>
+           </div>
+           <nav>
+               <ul>
+                   <li><a href="index.html">Home</a></li>
+                   <li><a href="contact.html">Contact Us</a></li>
+                   <li><a href="schemes.html">Schemes</a></li>
+                   <li><a href="indian-sports.html">Indian Sports</a></li>
+                   <li><a href="SportsRelatedMovies.html">Sports Related Movies</a></li>
+               </ul>
+           </nav>
+       </div>
+   </header>
+   <section id="about">
+       <div class="container">
+           <h2>About Us</h2>
+           <p>The Ministry of Youth Affairs and Sports is a pivotal department within the Government of India, entrusted with the responsibility of promoting sports and youth welfare across the country. The Ministry works to create an ecosystem that nurtures athletes and encourages the development of sports at all levels, from grassroots to elite competitions. Our vision is to foster a vibrant sporting culture in India, ensuring that sports become an integral part of the lives of every citizen.
+
+
+               Over the years, the Ministry has initiated numerous programs to enhance sports participation, provide financial support, and build world-class infrastructure. Our mission is to develop and empower athletes in every discipline, from traditional games to modern sports, ensuring equal opportunities for individuals from diverse backgrounds and regions.
+              
+               Through national programs such as the Khelo India Program, we are introducing new pathways to bring young talent into the sporting arena. These initiatives are designed to spot promising athletes from rural and remote areas, provide them with training, resources, and mentorship, and prepare them for international competitions like the Asian Games, Commonwealth Games, and the Olympics.
+              
+               We also recognize the importance of sports in building a healthy and active society. Therefore, we are committed to promoting sports for fitness and wellness through movements like the Fit India Movement. This initiative encourages every citizen to take up physical activity and make fitness a part of their daily routine. Our goal is to inspire millions to participate in various sports, whether for recreation or professional growth.
+              
+               The Ministry works in close collaboration with sports federations, state governments, and educational institutions to ensure that India continues to progress in the global sports arena. We also focus on the welfare of athletes, providing them with scholarships, financial assistance, and ensuring their well-being both during and after their competitive careers.
+              
+               As we continue to evolve and expand our efforts, we aim to position India as a powerhouse in the global sporting community, with a deep-rooted passion for sports and excellence.</p>
+       </div>
+       <section id="slideshow">
+           <div class="slideshow-container">
+               <div class="slide">
+                   <img src="https://yas.gov.in/sites/default/files/styles/sport_home_slider/public/Chess%20%20Champions%20%20%281180%20x%20375%20px%29-min.jpg?itok=3-ghjtaV" alt="Sports Event 1">
+               </div>
+               <div class="slide">
+                   <img src="https://yas.gov.in/sites/default/files/styles/320_300/public/PARIS%20PARALYMPICS%20%28801%20x%20373%20px%29-images-2.jpg?itok=wnPvPl0W" alt="Sports Event 2">
+               </div>
+               <div class="slide">
+                   <img src="https://www.elections.in/government/ministry-of-youth-affairs-and-sports.png" alt="Sports Event 3">
+               </div>
+               <button id="prev">&#10094;</button>
+               <button id="next">&#10095;</button>
+           </div>
+       </section>
+       <div class="popup-modal" id="popup-modal">
+           <div class="popup-content">
+               <span class="close-btn" id="close-popup">&times;</span>
+               <h2>Key Achievements</h2>
+               <p>India has achieved remarkable milestones in global sports. Initiatives like the Khelo India program have unearthed young talent...</p>
+           </div>
+       </div>
+       <button class="open-popup" id="open-popup">Key Achievements</button>
+       <button id="scroll-to-top" style="display: none;">↑</button>
+      
+   </section>
+   <script>
+let currentSlide = 0;
+const slides = document.querySelectorAll('.slide');
+const totalSlides = slides.length;
+function showSlide(index) {
+   slides.forEach((slide, i) => {
+       slide.style.display = i === index ? 'block' : 'none';
+   });
+}
+document.getElementById('next').addEventListener('click', () => {
+   currentSlide = (currentSlide + 1) % totalSlides;
+   showSlide(currentSlide);
+});
+document.getElementById('prev').addEventListener('click', () => {
+   currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+   showSlide(currentSlide);
+});
+const popupModal = document.getElementById('popup-modal');
+const openPopupBtn = document.getElementById('open-popup');
+const closePopupBtn = document.getElementById('close-popup');
+openPopupBtn.addEventListener('click', () => {
+   popupModal.style.display = 'flex';
+});
+closePopupBtn.addEventListener('click', () => {
+   popupModal.style.display = 'none';
+});
+window.addEventListener('click', (e) => {
+   if (e.target === popupModal) {
+       popupModal.style.display = 'none';
+   }
+});
+const readMoreBtn = document.getElementById('read-more-btn');
+const moreText = document.getElementById('more-text');
+readMoreBtn.addEventListener('click', () => {
+   if (moreText.style.display === 'none') {
+       moreText.style.display = 'inline';
+       readMoreBtn.textContent = 'Read Less';
+   } else {
+       moreText.style.display = 'none';
+       readMoreBtn.textContent = 'Read More';
+   }
+});
+const scrollToTopBtn = document.getElementById('scroll-to-top');
+window.addEventListener('scroll', () => {
+   if (window.scrollY > 200) {
+       scrollToTopBtn.style.display = 'block';
+   } else {
+       scrollToTopBtn.style.display = 'none';
+   }
+});
+scrollToTopBtn.addEventListener('click', () => {
+   window.scrollTo({ top: 0, behavior: 'smooth' });
+});
+
+
+// Initialize Slideshow
+showSlide(currentSlide);
+
+
+   </script>
+   <footer>
+       <p>&copy; 2025 Ministry of Youth Affairs and Sports, Government of India</p>
+   </footer>
+</body>
+</html>
+
+

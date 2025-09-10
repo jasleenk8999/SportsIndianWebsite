@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Indian Sports</title>
+   <style>
+       body {
+           font-family: 'Arial', sans-serif;
+           margin: 0;
+           padding: 0;
+           color: #333;
+           background: #f9f9f9;
+       }
+       header {
+           background: #003366;
+           color: white;
+           padding: 1rem 0;
+       }
+       .navbar {
+           display: flex;
+           justify-content: space-between;
+           align-items: center;
+           padding: 0 2rem;
+       }
+       .navbar ul {
+           list-style: none;
+           display: flex;
+       }
+       .navbar ul li {
+           margin: 0 1rem;
+       }
+       .navbar ul li a {
+           color: white;
+           text-decoration: none;
+           font-size: 1rem;
+       }
+       .navbar ul li a:hover {
+           text-decoration: underline;
+       }
+       #hero {
+           text-align: center;
+           padding: 5rem 1rem;
+       }
+       #hero h2 {
+           font-size: 2.5rem;
+           margin-bottom: 1rem;
+       }
+       #hero p {
+           font-size: 1.2rem;
+           margin-bottom: 2rem;
+       }
+       #hero button {
+           padding: 0.8rem 1.5rem;
+           background: #f39c12;
+           border: none;
+           color: white;
+           font-size: 1rem;
+           border-radius: 5px;
+           cursor: pointer;
+       }
+       #hero button:hover {
+           background: #e67e22;
+       }
+       #popular-sports {
+           background: white;
+           padding: 2rem 1rem;
+           text-align: center;
+       }
+       .sports-grid {
+           display: grid;
+           grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+           gap: 2rem;
+           margin-top: 2rem;
+       }
+       .sport-card {
+           background: #f4f4f4;
+           padding: 1rem;
+           border-radius: 10px;
+           box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+           text-align: center;
+           transition: transform 0.3s ease-in-out;
+       }
+       .sport-card:hover {
+           transform: scale(1.05);
+       }
+       .sport-card img {
+           width: 100%;
+           height: 150px;
+           object-fit: cover;
+           border-radius: 10px;
+           margin-bottom: 1rem;
+       }
+       .sport-card h3 {
+           margin-bottom: 0.5rem;
+           font-size: 1.5rem;
+       }
+       .sport-card p {
+           font-size: 1rem;
+           margin-bottom: 1rem;
+       }
+       .infoBtn {
+           background: #003366;
+           color: white;
+           border: none;
+           padding: 0.5rem 1rem;
+           cursor: pointer;
+           border-radius: 5px;
+       }
+       .infoBtn:hover {
+           background: #00509e;
+       }
+       #achievements {
+           background: #f9f9f9;
+           padding: 2rem 1rem;
+           text-align: center;
+       }
+       #achievements-list {
+           list-style: none;
+           margin: 1rem auto;
+           padding: 0;
+           max-width: 600px;
+       }
+       #achievements-list li {
+           background: #e0e0e0;
+           margin: 0.5rem 0;
+           padding: 0.8rem;
+           border-radius: 5px;
+       }
+       footer {
+           background: #003366;
+           color: white;
+           text-align: center;
+           padding: 1rem 0;
+       }
+   </style>
+</head>
+<body>
+   <header>
+       <div class="navbar">
+           <div class="logo">
+               <h1>Indian Sports</h1>
+           </div>
+           <nav>
+               <ul>
+                   <li><a href="index.html">Home</a></li>
+                   <li><a href="about.html">About Us</a></li>
+                   <li><a href="contact.html">Contact Us</a></li>
+                   <li><a href="schemes.html">Schemes</a></li>
+                   <li><a href="SportsRelatedMovies.html">Sports Movies</a></li>
+               </ul>
+           </nav>
+       </div>
+   </header>
+   <section id="hero">
+       <h2>Celebrating the Spirit of Indian Sports</h2>
+       <p>Explore the incredible world of Indian sports, where tradition meets excellence. From cricket to kabaddi, discover how India shines on the global stage.</p>
+       <button id="exploreBtn">Explore More</button>
+   </section>
+   <section id="popular-sports">
+       <h2>Popular Sports in India</h2>
+       <div class="sports-grid">
+           <div class="sport-card" id="cricket">
+               <img src="data:image/jpeg;base64,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" alt="Cricket">
+               <h3>Cricket</h3>
+               <p>The most loved sport in India, where legends like Sachin Tendulkar and Virat Kohli inspire millions.</p>
+               <button class="infoBtn">Learn More</button>
+           </div>
+           <div class="sport-card" id="kabaddi">
+               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJVB3XbiDBQX5jij8UVS9ETkB0WLPL_RGggA&s" alt="Kabaddi">
+               <h3>Kabaddi</h3>
+               <p>A traditional Indian sport that has gained international recognition and a loyal fan base.</p>
+               <button class="infoBtn">Learn More</button>
+           </div>
+           <div class="sport-card" id="hockey">
+               <img src="https://hockey-india.b-cdn.net/media/uploads/2024/03/21-9-llCketrzwD.jpg?aspect_ratio=21:9&width=1920" alt="Hockey">
+               <h3>Hockey</h3>
+               <p>The national sport of India with a glorious history of Olympic victories.</p>
+               <button class="infoBtn">Learn More</button>
+           </div>
+       </div>
+   </section>
+   <section id="achievements">
+       <h2>India's Sporting Achievements</h2>
+       <p>India has made remarkable contributions to the world of sports, earning medals and accolades across various disciplines.</p>
+       <ul id="achievements-list">
+           <li>Gold Medal in Hockey - 8 times Olympic Champions</li>
+           <li>Neeraj Chopra - Gold in Javelin Throw at the Olympics</li>
+           <li>Mary Kom - Multiple-time World Boxing Champion</li>
+           <li>P.V. Sindhu - Olympic Medalist in Badminton</li>
+       </ul>
+   </section>
+   <footer>
+       <p>&copy; 2025 Indian Sports Ministry</p>
+   </footer>
+   <script>
+       document.getElementById("exploreBtn").addEventListener("click", () => {
+           alert("Explore the fascinating journey of Indian sports!");
+       });
+       document.querySelectorAll(".infoBtn").forEach((button) => {
+           button.addEventListener("click", (event) => {
+               const sport = event.target.parentElement.id;
+               const sportDetails = {
+                   cricket: "Cricket is the heartbeat of India. From local gully cricket to international matches, it unites millions.",
+                   kabaddi: "Kabaddi, a contact sport, has grown from rural origins to global recognition, especially with the Pro Kabaddi League.",
+                   hockey: "Hockey, once India's pride in the Olympics, continues to inspire a new generation of players.",
+               };
+               alert(sportDetails[sport]);
+           });
+       });
+   </script>
+</body>
+</html>
+
+

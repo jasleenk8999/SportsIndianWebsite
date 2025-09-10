@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Sports Ministry of India</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+      <div class="navbar">
+          <div class="logo">
+              <h1>Sports Ministry</h1>
+          </div>
+          <nav>
+              <ul>
+                  <li><a href="about.html">About Us</a></li>
+                  <li><a href="contact.html">Contact Us</a></li>
+                  <li><a href="schemes.html">Schemes</a></li>
+                  <li><a href="indian-sports.html">Indian Sports</a></li>
+                  <li><a href="SportsRelatedMovies.html">Sports Related Movies</a></li>
+              </ul>
+          </nav>
+          <div class="search-container">
+              <input type="text" placeholder="Search..." id="search">
+              <button onclick="searchFunction()">Search</button>
+          </div>
+      </div>
+  </header>
+  <section id="hero">
+      <div class="hero-content">
+          <h2>Welcome to the Sports Ministry of India</h2>
+          <p>Promoting sports excellence across the nation. Empowering athletes and building a healthier society.</p>
+          <button class="open-popup" onclick="openModal()">Learn More</button>
+      </div>
+  </section>
+  <!-- Image Slideshow -->
+  <section id="slideshow">
+      <div class="slideshow-container">
+          <div class="slide fade">
+              <img src="https://iismworld.com/wp-content/uploads/2022/03/IPL-Contribution-to-India-By-CRICKETER.jpg" alt="Event 1">
+          </div>
+          <div class="slide fade">
+              <img src="https://www.niti.gov.in/sites/default/files/styles/wide/public/2023-01/ReinvigoratingSports-inRuralAreas-cover.jpg?itok=yR_gpLtW" alt="Event 2">
+          </div>
+          <div class="slide fade">
+              <img src="https://media.licdn.com/dms/image/v2/D4D12AQGQuFWOcrn-3w/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1700476845719?e=2147483647&v=beta&t=5XHxKz8ZMaDY-QpaO-MpIIVPPd6_7i92FyApY4houhQ" alt="Event 3">
+          </div>
+      </div>
+  </section>
+  <!-- Popup Modal -->
+  <div id="popupModal" class="popup-modal">
+      <div class="popup-content">
+          <span class="close-btn" onclick="closeModal()">&times;</span>
+          <h3>About Sports Ministry</h3>
+          <p>The Ministry of Youth Affairs and Sports in India plays a key role in promoting sports and organizing sporting events across the country. We are dedicated to empowering athletes and developing a culture of fitness and sportsmanship.</p>
+          <button onclick="closeModal()">Close</button>
+      </div>
+  </div>
+  <!-- Recent Events Section -->
+  <section id="recent-events">
+      <div class="container">
+          <h2>Recent News & Events</h2>
+          <ul id="events-list">
+              <li>India shines at the Asian Games 2024</li>
+              <li>Khelo India Games to start in February 2025</li>
+              <li>Fit India Movement reaches 10 million participants</li>
+          </ul>
+          <button onclick="loadMoreEvents()">Load More Events</button>
+      </div>
+  </section>
+  <!-- Footer -->
+  <footer>
+      <p>&copy; 2025 Ministry of Youth Affairs and Sports, Government of India</p>
+  </footer>
+  <script>
+      // Search Function
+      function searchFunction() {
+          let query = document.getElementById('search').value;
+          if (query) {
+              alert('Searching for: ' + query);
+          } else {
+              alert('Please enter a search query');
+          }
+      }
+      // Modal Popup Functions
+      function openModal() {
+          document.getElementById('popupModal').style.display = "block";
+      }
+      function closeModal() {
+          document.getElementById('popupModal').style.display = "none";
+      }
+      window.onclick = function(event) {
+          if (event.target == document.getElementById('popupModal')) {
+              closeModal();
+          }
+      }
+      let slideIndex = 0;
+      showSlides();
+      function showSlides() {
+          let slides = document.getElementsByClassName("slide");
+          for (let i = 0; i < slides.length; i++) {
+              slides[i].style.display = "none"; 
+          }
+          slideIndex++;
+          if (slideIndex > slides.length) {slideIndex = 1}   
+          slides[slideIndex-1].style.display = "block"; 
+          setTimeout(showSlides, 3000); // Change image every 3 seconds
+      }
+      // Load More Events
+      function loadMoreEvents() {
+          const eventsList = document.getElementById('events-list');
+          const newEvents = [
+              'India sets new records in the 2024 Summer Olympics.',
+              'National Football Championship begins in March 2025.',
+              'National Badminton Tournament concluded successfully.'
+          ];          newEvents.forEach(event => {
+              let li = document.createElement('li');
+              li.textContent = event;
+              eventsList.appendChild(li);
+          });
+          document.querySelector('button').disabled = true;
+          document.querySelector('button').textContent = "All Events Loaded";
+      }
+  </script>
+</body>
+</html>
+
